@@ -11,7 +11,18 @@ app.config["MONGODB_DB"] = "my_tumble_log"
 app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 
 
-connect(os.environ.get('MONGOLAB_URI'))
+mongo_uri = os.environ.get('MONGOLAB_URI')
+app.config["MONGODB_SETTINGS"] = mongo_uri
+# {
+#     'db': app.config.get('MONGODB_DB', None),
+#     'username': app.config.get('MONGODB_USERNAME', None),
+#     'password': app.config.get('MONGODB_PASSWORD', None),
+#     'host': app.config.get('MONGODB_HOST', None),
+#     'port': int(app.config.get('MONGODB_PORT', 0)) or None
+# }
+# 
+
+
 
 db = MongoEngine(app)
 
