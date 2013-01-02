@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from flask.ext.mongoengine import MongoEngin
+from flask.ext.mongoengine import MongoEngine
 from mongoengine import connect
 
 # import settings
