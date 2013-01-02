@@ -12,15 +12,21 @@ app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 
 
 mongo_uri = os.environ.get('MONGOLAB_URI')
-app.config["MONGODB_SETTINGS"] = mongo_uri
+if mongo_uri :
+    parts = mongo_uri.split(":")
+    uname = parts[2]
+    host = parts[1][2:]
+    dbname = parts[3].split('/')[1]
+    port = parts[3].split('/')[0] 
+    app.config["MONGODB_SETTINGS"] = {
+        'db': dbname,
+        'username': uname,
+        'password': '',
+        'host': host,
+        'port': port
+    }
 
-# {
-#     'db': app.config.get('MONGODB_DB', None),
-#     'username': app.config.get('MONGODB_USERNAME', None),
-#     'password': app.config.get('MONGODB_PASSWORD', None),
-#     'host': app.config.get('MONGODB_HOST', None),
-#     'port': int(app.config.get('MONGODB_PORT', 0)) or None
-# }
+
 # 
 
 
