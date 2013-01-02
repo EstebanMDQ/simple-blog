@@ -1,14 +1,16 @@
+import os
 from flask import Flask
-import flask.ext.mongoengine as mongoengine
+from flask.ext.mongoengine import MongoEngine, mongoengine
 
 app = Flask(__name__)
 app.debug = True
 app.config["MONGODB_DB"] = "my_tumble_log"
 app.config["SECRET_KEY"] = "KeepThisS3cr3t"
+host = os.environ.get('MONGOLAB_URI')
+if host:
+    mongoengine.connect('mydata', host=host)
 
-mongoengine.connect('mydata', host=os.environ.get('MONGOLAB_URI'))
-
-db = mongoengine.MongoEngine(app)
+db = MongoEngine(app)
 
 def register_blueprints(app):
     # Prevents circular imports
