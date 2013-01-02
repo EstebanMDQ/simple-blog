@@ -13,6 +13,7 @@ app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 
 mongo_uri = os.environ.get('MONGOLAB_URI')
 app.config["MONGODB_SETTINGS"] = mongo_uri
+
 # {
 #     'db': app.config.get('MONGODB_DB', None),
 #     'username': app.config.get('MONGODB_USERNAME', None),
