@@ -1,14 +1,17 @@
 import os
 from flask import Flask
-from flask.ext.mongoengine import MongoEngine, mongoengine
+from flask.ext.mongoengine import MongoEngin
+from mongoengine import connect
+
+# import settings
 
 app = Flask(__name__)
 app.debug = True
 app.config["MONGODB_DB"] = "my_tumble_log"
 app.config["SECRET_KEY"] = "KeepThisS3cr3t"
-host = os.environ.get('MONGOLAB_URI')
-if host:
-    mongoengine.connect('mydata', host=host)
+
+
+connect(os.environ.get('MONGOLAB_URI'))
 
 db = MongoEngine(app)
 
