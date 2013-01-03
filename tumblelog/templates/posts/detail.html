@@ -10,10 +10,10 @@
 {% block content %}
   {% if post.body %}
     {% if post.post_type == 'Quote' %}
-      <blockquote>{{ post.body }}</blockquote>
+      <blockquote>{{ post.body|markdown }}</blockquote>
       <p>{{ post.author }}</p>
     {% else %}
-      <p>{{ post.body }}</p>
+      <p>{{ post.body|markdown }}</p>
     {% endif %}
   {% endif %}
   {% if post.embed_code %}

@@ -2,6 +2,7 @@ import os, urlparse
 from flask import Flask
 from flask.ext.mongoengine import MongoEngine
 from mongoengine import connect
+from flask.ext.markdown import Markdown
 
 # import settings
 
@@ -10,6 +11,8 @@ app.debug = True
 app.config["MONGODB_DB"] = "my_tumble_log"
 app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 
+
+Markdown(app)
 
 MONGOLAB_URI = os.environ.get('MONGOLAB_URI')
 if MONGOLAB_URI:
@@ -25,7 +28,7 @@ if MONGOLAB_URI:
 
 # 
 
-
+# ToDo add markdown support and embed urls
 
 db = MongoEngine(app)
 
