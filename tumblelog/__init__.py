@@ -1,4 +1,4 @@
-import os
+import os, urlparse
 from flask import Flask
 from flask.ext.mongoengine import MongoEngine
 from mongoengine import connect
@@ -11,20 +11,14 @@ app.config["MONGODB_DB"] = "my_tumble_log"
 app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 
 
-mongo_uri = os.environ.get('MONGOLAB_URI')
-if mongo_uri :
-    parts = mongo_uri.split(":")
-    uname = "heroku_app10619867" #parts[2]
-    host = "ds047207.mongolab.com" #parts[1][2:]
-    dbname = "heroku_app10619867" # parts[3].split('/')[1]
-    port = 47207 #int(parts[3].split('/')[0])
-    app.config["MONGODB_SETTINGS"] = {
-        'db': dbname,
-        'username': uname,
-        'password': '',
-        'host': host,
-        'port': port
-    }
+MONGOLAB_URI = os.environ.get('MONGOLAB_URI')
+if MONGOLAB_URI:
+    url = urlparse.urlparse(MONGOLAB_URI)
+    MONGODB_USER = url.username
+    MONGODB_PASSWORD = url.password
+    MONGODB_HOST = url.hostname
+    MONGODB_PORT = url.port
+    MONGODB_DB = url.path[1:]
 
 
 # 
