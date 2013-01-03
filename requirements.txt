@@ -1,7 +1,9 @@
 Flask==0.9
+Flask-Markdown==0.3
 Flask-Script==0.5.2
 Flask-WTF==0.8.2
 Jinja2==2.6
+Markdown==2.2.1
 WTForms==1.0.2
 Werkzeug==0.8.3
 distribute==0.6.24
