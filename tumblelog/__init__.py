@@ -14,12 +14,14 @@ app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 MONGOLAB_URI = os.environ.get('MONGOLAB_URI')
 if MONGOLAB_URI:
     url = urlparse.urlparse(MONGOLAB_URI)
-    MONGODB_USER = url.username
-    MONGODB_PASSWORD = url.password
-    MONGODB_HOST = url.hostname
-    MONGODB_PORT = url.port
-    MONGODB_DB = url.path[1:]
-
+    app.config["MONGODB_SETTINGS"] = {
+        'db': url.path[1:],
+        'username': url.username,
+        'password': url.password,
+        'host': url.hostname,
+        'port': url.port
+    }
+    app.config["MONGODB_DB"] = url.path[1:]
 
 # 
 
