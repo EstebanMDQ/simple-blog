@@ -23,7 +23,7 @@ if mongo_uri :
         'username': uname,
         'password': '',
         'host': host,
-        'port': port
+        'port': int(port)
     }
 
 
