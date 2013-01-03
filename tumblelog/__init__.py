@@ -14,16 +14,16 @@ app.config["SECRET_KEY"] = "KeepThisS3cr3t"
 mongo_uri = os.environ.get('MONGOLAB_URI')
 if mongo_uri :
     parts = mongo_uri.split(":")
-    uname = parts[2]
-    host = parts[1][2:]
-    dbname = parts[3].split('/')[1]
-    port = parts[3].split('/')[0] 
+    uname = "heroku_app10619867" #parts[2]
+    host = "ds047207.mongolab.com" #parts[1][2:]
+    dbname = "heroku_app10619867" # parts[3].split('/')[1]
+    port = 47207 #int(parts[3].split('/')[0])
     app.config["MONGODB_SETTINGS"] = {
         'db': dbname,
         'username': uname,
         'password': '',
         'host': host,
-        'port': int(port)
+        'port': port
     }
 
 
