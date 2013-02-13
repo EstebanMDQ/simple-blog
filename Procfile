@@ -1,1 +1,1 @@
-web: gunicorn tumblelog:app -b "0.0.0.0:$PORT"
+web: newrelic-admin run-program gunicorn tumblelog:app -b "0.0.0.0:$PORT"
