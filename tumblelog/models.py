@@ -8,6 +8,7 @@ class Post(db.DynamicDocument):
     title = db.StringField(max_length=255, required=True)
     slug = db.StringField(max_length=255, required=True)
     comments = db.ListField(db.EmbeddedDocumentField('Comment'))
+    tags = db.StringField(max_length=255, required=False)
 
     def get_absolute_url(self):
         return url_for('post', kwargs={"slug": self.slug})
@@ -25,16 +26,19 @@ class Post(db.DynamicDocument):
         'ordering': ['-created_at']
     }
 
+class SourcedPost(Post):
+    source_url = db.StringField(required=False)
 
 class BlogPost(Post):
+    extract = db.StringField(required=True)
     body = db.StringField(required=True)
 
 
-class Video(Post):
+class Video(SourcedPost):
     embed_code = db.StringField(required=True)
 
 
-class Image(Post):
+class Image(SourcedPost):
     image_url = db.StringField(required=True, max_length=255)
 
 

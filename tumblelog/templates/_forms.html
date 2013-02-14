@@ -7,10 +7,10 @@
   <div class="clearfix {% if field.errors %}error{% endif %}">
     {{ field.label }}
     <div class="input">
-      {% if field.name == "body" %}
-        {{ field(rows=10, cols=40) }}
+      {% if field.type == "TextAreaField" %}
+        {{ field(rows=10, class="xxlarge") }}
       {% else %}
-        {{ field() }}
+        {{ field(class="xxlarge") }}
       {% endif %}
       {% if field.errors or field.help_text %}
         <span class="help-inline">

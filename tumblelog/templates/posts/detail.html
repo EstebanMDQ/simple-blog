@@ -20,12 +20,28 @@
     {{ post.embed_code|safe() }}
   {% endif %}
   {% if post.image_url %}
-    <p><img src="{{ post.image_url }}" /><p>
+    <p>
+      <img src="{{ post.image_url }}" alt="{{post.title}}"/>
+      {% if post.source_url %}
+      <small>source: <a href="{{post.source_url}}">{{post.source_url}}</small>
+      {% endif %}
+      <p>
   {% endif %}
-
   <p>{{ post.created_at.strftime('%H:%M %Y-%m-%d') }}</p>
   <hr>
-  <h2>Comments</h2>
+  
+  <h3>Comments</h3>
+  <div class="fb-comments" data-href="{{ BASE_URL }}{{ url_for('posts.detail', slug=post.slug) }}" data-width="470" data-num-posts="10"></div>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=453962531329840";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  
+  {#
   {% if post.comments %}
     {% for comment in post.comments %}
        <p>{{ comment.body }}</p>
@@ -41,5 +57,5 @@
       <input type="submit" class="btn primary" value="comment">
     </div>
   </form>
-
+  #}
 {% endblock %}

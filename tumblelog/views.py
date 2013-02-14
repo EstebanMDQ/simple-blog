@@ -6,6 +6,7 @@ from tumblelog.models import Post, Comment
 
 posts = Blueprint('posts', __name__, template_folder='templates')
 
+BASE_URL = 'http://tumblelog.mcniac.com.ar'
 
 class ListView(MethodView):
 
@@ -24,6 +25,7 @@ class DetailView(MethodView):
         context = {
             "post":post,
             "form":form,
+            "BASE_URL":BASE_URL,
         }
         return context
 
