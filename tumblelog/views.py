@@ -6,7 +6,7 @@ from tumblelog.models import Post, Comment
 
 posts = Blueprint('posts', __name__, template_folder='templates')
 
-BASE_URL = 'http://tumblelog.mcniac.com.ar'
+BASE_URL = 'http://tumble.mcniac.com.ar'
 
 class ListView(MethodView):
 
