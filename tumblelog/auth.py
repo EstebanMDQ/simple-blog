@@ -1,3 +1,4 @@
+import os
 from functools import wraps
 from flask import request, Response
 
@@ -6,7 +7,7 @@ def check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return username == 'damasta' and password == 'yo dude wassup?'
+    return username == os.environ.get("SB_ADM_USER","admin") and password == os.environ.get("SB_ADM_PASSWD","1234")
 
 
 def authenticate():
